@@ -1,2 +1,7 @@
 .idea/
-/target
+
+# Keep only essential shared settings
+!.idea/codeStyles/
+!.idea/runConfigurations/
+!.idea/vcs.xml
+!.idea/modules.xml
