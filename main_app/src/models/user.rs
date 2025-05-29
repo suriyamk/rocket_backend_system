@@ -1,13 +1,23 @@
 use diesel::prelude::*;
-use crate::schema::users;
+use crate::schema::schema::user;
+use diesel::sql_types::Date;
 
 #[derive(Queryable, Selectable)]
-#[diesel(table_name = crate::schema::user)]
+#[diesel(table_name = user)]
+#[diesel(check_for_backend(diesel::sqlite::Sqlite))]
 struct User {
-    userId: i64,
+    userId: i32,
     userName: String,
-    companyId: i64,
+    companyId: i32,
     isDeleted: bool,
     createdDate: Date,
     modifiedDate: Date,
+}
+
+#[derive(Insertable)]
+#[diesel(table_name = user)]
+struct CreateUserModel {
+    userName: &'a str,
+    companyId: i32,
+    isDeleted: bool,
 }
