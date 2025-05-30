@@ -13,11 +13,3 @@ struct User {
     createdDate: Date,
     modifiedDate: Date,
 }
-
-#[derive(Insertable)]
-#[diesel(table_name = user)]
-struct CreateUserModel {
-    userName: &'a str,
-    companyId: i32,
-    isDeleted: bool,
-}

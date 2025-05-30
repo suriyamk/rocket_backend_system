@@ -1,6 +1,7 @@
 #[macro_use] extern crate rocket;
 use std::env;
 
+use rocket::{get, launch, routes, Rocket, Build};
 use diesel::{Connection, sqlite::SqliteConnection};
 use dotenvy::dotenv;
 
@@ -11,8 +12,6 @@ fn establish_connection() -> SqliteConnection {
     SqliteConnection::establish(&database_url)
         .unwrap_or_else(|_| panic!("Error connecting to {}", database_url))
 }
-#[macro_use]
-extern crate rocket;
 
 #[get("/")]
 fn index() -> &'static str {
@@ -20,6 +19,6 @@ fn index() -> &'static str {
 }
 
 #[launch]
-fn rocket() -> rocket::Rocket<rocket::Build> {
+fn rocket() -> Rocket<Build>  {
     rocket::build().mount("/", routes![index])
 }
