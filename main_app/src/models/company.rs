@@ -1,4 +1,5 @@
 use diesel::Insertable;
+use crate::schema::schema::user;
 
 #[derive(Insertable)]
 #[diesel(table_name = user)]

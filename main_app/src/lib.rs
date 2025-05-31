@@ -3,14 +3,14 @@ pub mod models;
 #[macro_use] extern crate rocket;
 
 use diesel::prelude::*;
-use crate::models::{ user, create_user  };
+use crate::models::user::User;
 use crate::models::create_user::CreateUser;
 
-pub fn create_user(conn: &mut SqliteConnection, user_model: &user) -> user {
+pub fn create_user(conn: &mut SqliteConnection, &user_model: &User) -> User {
     use crate::schema::schema::user;
-    // let user_obj = CreateUser { userName: &user_model };
+    let user_obj = CreateUser { userName: &user_model.userName, companyId: user_model.companyId, isDeleted: false };
     diesel::insert_into(user::table)
-        .values(user_model)
+        .values(user_obj)
         .execute(conn)
         .expect("Error while saving user data");
 

@@ -6,7 +6,7 @@ diesel::table! {
         userName -> Text,
         companyId -> Integer,
         isDeleted -> Bool,
-        createdDate -> Date,
-        modifiedDate -> Date,
+        createdDate -> Timestamp,
+        modifiedDate -> Timestamp,
     }
 }

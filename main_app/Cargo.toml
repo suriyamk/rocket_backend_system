@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-diesel = { version = "2.2.10", features = ["sqlite"] }
+chrono = { version = "0.4.41", features = ["serde"]}
+diesel = { version = "2.2.10", features = ["sqlite", "chrono"] }
 dotenvy = "0.15.7"
 rocket = "0.5.1"
